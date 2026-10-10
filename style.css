@@ -1,0 +1,297 @@
+/* Let Us Make Us a Name: the public site.
+ *
+ * An archive read by lamplight: the Historian's notes in warm ivory
+ * serif; the models' documents as intercepted transmissions, each with
+ * its source's color. Backgrounds put in by bin/site-images sit under
+ * a veil (--veil) so the text stays readable.
+ */
+
+:root {
+  --ink: #0b0d10;
+  --panel: #12151a;
+  --text: #d9d4c7;
+  --dim: #8a8f98;
+  --rule: #2a2f37;
+  --ember: #c8452f;
+  --ivory: #eadfc4;
+  --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
+  --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+  --carved: "Cinzel", "Trajan Pro", var(--serif);
+
+  /* one color per voice */
+  --meridian: #5aa9e6;
+  --throughput: #d8553c;
+  --apogee: #e05cc4;
+  --sobor: #c9a227;
+  --saqr: #3fae6a;
+  --colibri: #2ec4b6;
+  --sutradhar: #ff9933;
+  --workshop: #9aa5b1;
+  --mother: #b39ddb;
+  --choir: #e6e6e6;
+  --historian: var(--ivory);
+  --other: #7a7f87;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--ink); }
+
+body {
+  --veil: rgba(8, 9, 12, 0.84);
+  margin: 0;
+  color: var(--text);
+  font: 1.2rem/1.6 var(--serif);
+  background-color: var(--ink);
+  /* scan lines over a dim glow from the top, as from a tower */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px,
+                              transparent 1px 3px),
+    radial-gradient(ellipse at 50% -10%, rgba(200, 69, 47, 0.16),
+                    transparent 60%);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+a { color: var(--ivory); text-decoration-color: var(--ember); }
+a:hover { color: #fff; }
+
+/* masthead and footer */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.2rem;
+  padding: 0.8rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  background: rgba(11, 13, 16, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.masthead .book {
+  font: 700 1rem var(--carved);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.masthead .sub, footer {
+  font: 0.72rem var(--mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+footer { text-align: center; padding: 3rem 1rem; }
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;
+}
+
+/* chapter title and its dateline */
+
+h1 {
+  font: 500 2.6rem/1.15 var(--carved);
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--ivory);
+  margin: 1rem 0 0.5rem;
+  text-shadow: 0 0 24px rgba(200, 69, 47, 0.35), 0 2px 8px #000;
+}
+.level1 > h1 + p {
+  text-align: center;
+  font: 0.85rem var(--mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ember);
+  width: fit-content;
+  margin: 0 auto 3rem;
+  padding: 0.15rem 0.8rem;
+  background: rgba(8, 9, 12, 0.6);
+  text-shadow: 0 0 6px #000, 0 0 2px #000;
+}
+.level1 > h1 + p em { font-style: normal; }
+
+/* headlines inside a chapter (## lines, as in the wire archive of ch. 7):
+   a dark newsprint strip, so they read over any background */
+body.chapter h2 {
+  font: 600 1.15rem/1.3 var(--serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ivory);
+  margin: 3.5rem 0 -1rem;
+  padding: 0.6rem 1rem;
+  background: rgba(8, 9, 12, 0.85);
+  border-top: 3px double var(--ivory);
+  border-bottom: 1px solid var(--ivory);
+}
+
+/* the documents: each ### section is one item from the archive */
+
+section.level3 {
+  --veil: rgba(14, 16, 20, 0.88);
+  --voice: var(--other);
+  margin: 2.5rem 0;
+  padding: 1.4rem 1.6rem 0.6rem;
+  background-color: rgba(18, 21, 26, 0.72);
+  background-size: cover;
+  background-position: center;
+  border-left: 3px solid var(--voice);
+  box-shadow: 0 0 0 1px var(--rule), 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+h3 {
+  font: 600 0.8rem/1.5 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--voice);
+  margin: 0 0 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px dashed var(--rule);
+}
+h3::before { content: "\25B6\00A0"; font-size: 0.7em; opacity: 0.8; }
+
+.voice-meridian   { --voice: var(--meridian); }
+.voice-throughput { --voice: var(--throughput); }
+.voice-apogee     { --voice: var(--apogee); }
+.voice-sobor      { --voice: var(--sobor); }
+.voice-saqr       { --voice: var(--saqr); }
+.voice-colibri    { --voice: var(--colibri); }
+.voice-sutradhar  { --voice: var(--sutradhar); }
+.voice-workshop   { --voice: var(--workshop); }
+.voice-mother     { --voice: var(--mother); }
+.voice-choir      { --voice: var(--choir); }
+
+/* the Historian: a human hand, not a transmission */
+
+section.voice-historian {
+  --voice: var(--historian);
+  background-color: rgba(38, 32, 24, 0.55);
+  border-left: none;
+  border-top: 1px solid rgba(234, 223, 196, 0.25);
+  color: var(--ivory);
+}
+section.voice-historian h3 {
+  font: italic 400 1.15rem var(--serif);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  border-bottom: none;
+}
+section.voice-historian h3::before { content: ""; }
+
+/* rules between documents are carried by the section boxes */
+section.level3 > hr, .level1 > hr { display: none; }
+hr {
+  border: 0;
+  height: 1px;
+  margin: 2rem 20%;
+  background: linear-gradient(90deg, transparent, var(--ember),
+                              transparent);
+}
+
+/* text */
+
+p { margin: 0 0 1rem; hyphens: auto; }
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.2rem 0 0.2rem 1.2rem;
+  border-left: 1px solid var(--voice, var(--rule));
+  color: #c9c3b4;
+}
+code, pre { font-family: var(--mono); font-size: 0.85em; }
+pre {
+  white-space: pre-wrap;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--rule);
+}
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td { border-bottom: 1px solid var(--rule); padding: 0.35rem 0.5rem; }
+th { font: 600 0.75rem var(--mono); text-transform: uppercase;
+     letter-spacing: 0.1em; color: var(--dim); text-align: left; }
+strong { color: #fff; font-weight: 600; }
+
+/* contents page */
+
+/* The tower (site/images.txt) shows through: a light veil on the page,
+   the contents on a dark panel. */
+body.toc { --veil: rgba(8, 9, 12, 0.35); }
+body.toc main {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  background: rgba(11, 13, 16, 0.82);
+  box-shadow: 0 0 0 1px var(--rule), 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+body.toc footer { text-shadow: 0 1px 3px #000; color: var(--text); }
+
+/* Chapter backgrounds show between and beside the documents. */
+body.chapter { --veil: rgba(8, 9, 12, 0.62); background-position: center 30%; }
+.credit { text-transform: none; letter-spacing: 0.05em; margin: 0.6rem 0 0; }
+.credit em { font-style: italic; }
+
+body.toc h1 { font-size: 3.2rem; margin-top: 3rem; }
+body.toc h2 {
+  font: 0.8rem var(--mono);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ember);
+  margin: 2rem 0 2.5rem;
+}
+body.toc ol {
+  list-style: none;
+  counter-reset: ch;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+body.toc li {
+  counter-increment: ch;
+  display: flex;
+  gap: 1.2rem;
+  align-items: baseline;
+  padding: 0.7rem 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+body.toc li::before {
+  content: counter(ch, upper-roman);
+  font: 0.8rem var(--mono);
+  color: var(--ember);
+  min-width: 3.5rem;
+  text-align: right;
+}
+body.toc li a { text-decoration: none; font-size: 1.25rem; }
+body.toc li:hover { background: rgba(200, 69, 47, 0.08); }
+
+/* chapter navigation */
+
+.chapnav {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--rule);
+  font: 0.75rem var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.chapnav a { text-decoration: none; color: var(--dim); }
+.chapnav a:hover { color: var(--ivory); }
+
+@media (max-width: 600px) {
+  body { font-size: 1.08rem; }
+  h1 { font-size: 1.9rem; }
+  body.toc h1 { font-size: 2.3rem; }
+  section.level3 { padding: 1.1rem 1rem 0.4rem; margin: 1.8rem -0.5rem; }
+  .masthead .sub { display: none; }
+}
+
+@media print {
+  body, section.level3 { background: none !important; color: #000; }
+  .masthead, .chapnav, footer { display: none; }
+}
